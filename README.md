@@ -14,6 +14,22 @@ This introduces the missing DBTTypes.pas unit and a sample app that notifies the
 Drop a desktop shortcut on this demo window and it will read the shortcut file, determine and retrieve the
 appropriate icon.
 
+# Intercept (duplicate) console application output
+
+Now a tough one (I think)
+
+There are hundreds of examples of how to **redirect** output from a console application to your own application. Basically you pass 
+inheritable anonymous pipe handles to CreateProcess() which will then get attached to the console. It's your app which reads the
+console app output from the pipe.
+
+However, this solution has a major drawback: The console window is empty. So most people just hide the window with SW_HIDE.
+
+A solution is to attach your own process to the child console applications window and echo the output while it's recorded with a
+simple call to Write(). You can find an example in InterceptConsoleOutput.dpr.
+
+Refer to https://learn.microsoft.com/en-us/windows/console/getconsoleoutputcp if you need to translate the captured output to your
+codepage (e.g. when German "Umlauts" are broken.)
+
 # WMI (Windows Management Instrumentation) example to find your MachineUUID
 
 The problem with WMI is not to get the information extracted, but to find it. There is a huge amount of information about
