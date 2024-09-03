@@ -13,3 +13,108 @@ This introduces the missing DBTTypes.pas unit and a sample app that notifies the
 
 Drop a desktop shortcut on this demo window and it will read the shortcut file, determine and retrieve the
 appropriate icon.
+
+# WMI (Windows Management Instrumentation) example to find your MachineUUID
+
+The problem with WMI is not to get the information extracted, but to find it. There is a huge amount of information about
+your computer and operating system waiting for you.
+
+Read more about WMI on Wikipedia [https://en.wikipedia.org/wiki/Windows_Management_Instrumentation]
+
+Of particular interest is the class Win32_ComputerSystemProduct which is used in this demo:
+
+```
+  Name                  : Parallels Virtual Platform
+  Version               : None
+  Caption               : Computersystemprodukt
+  Description           : Computersystemprodukt
+  IdentifyingNumber     : Parallels-74 88 82 30 DB 3D 4C B0 A7 1D A6 FB FB D2 57 7E
+  SKUNumber             :
+  Vendor                : Parallels International GmbH.
+  UUID                  : 30828874-3DDB-B04C-A71D-A6FBFBD2577E
+  PSComputerName        :
+  CimClass              : root/cimv2:Win32_ComputerSystemProduct
+  CimInstanceProperties : (Caption, Description, IdentifyingNumber, Name...)
+  CimSystemProperties   : Microsoft.Management.Infrastructure.CimSystemProperties
+```
+Also of interest is the Win32_OperatingSystem that is a bag of information about your installed Windows:
+```
+  Status                                    : OK
+  Name                                      : Microsoft Windows 11 Pro|C:\WINDOWS|\Device\Harddisk0\Partition3
+  FreePhysicalMemory                        : 4773060
+  FreeSpaceInPagingFiles                    : 514572
+  FreeVirtualMemory                         : 5117040
+  Caption                                   : Microsoft Windows 11 Pro
+  Description                               :
+  InstallDate                               : 18.06.2024 18:25:45
+  CreationClassName                         : Win32_OperatingSystem
+  CSCreationClassName                       : Win32_ComputerSystem
+  CSName                                    : VM-DELPHI-XE
+  CurrentTimeZone                           : 120
+  Distributed                               : False
+  LastBootUpTime                            : 03.09.2024 09:16:26
+  LocalDateTime                             : 03.09.2024 09:44:32
+  MaxNumberOfProcesses                      : 4294967295
+  MaxProcessMemorySize                      : 137438953344
+  NumberOfLicensedUsers                     :
+  NumberOfProcesses                         : 153
+  NumberOfUsers                             : 2
+  OSType                                    : 18
+  OtherTypeDescription                      :
+  SizeStoredInPagingFiles                   : 524288
+  TotalSwapSpaceSize                        :
+  TotalVirtualMemorySize                    : 8893744
+  TotalVisibleMemorySize                    : 8369456
+  Version                                   : 10.0.22631
+  BootDevice                                : \Device\HarddiskVolume1
+  BuildNumber                               : 22631
+  BuildType                                 : Multiprocessor Free
+  CodeSet                                   : 1252
+  CountryCode                               : 49
+  CSDVersion                                :
+  DataExecutionPrevention_32BitApplications : True
+  DataExecutionPrevention_Available         : True
+  DataExecutionPrevention_Drivers           : True
+  DataExecutionPrevention_SupportPolicy     : 2
+  Debug                                     : False
+  EncryptionLevel                           : 256
+  ForegroundApplicationBoost                : 2
+  LargeSystemCache                          :
+  Locale                                    : 0407
+  Manufacturer                              : Microsoft Corporation
+  MUILanguages                              : (de-DE, en-US)
+  OperatingSystemSKU                        : 48
+  Organization                              :
+  OSArchitecture                            : 64-Bit
+  OSLanguage                                : 1031
+  OSProductSuite                            : 256
+  PAEEnabled                                :
+  PlusProductID                             :
+  PlusVersionNumber                         :
+  PortableOperatingSystem                   : False
+  Primary                                   : True
+  ProductType                               : 1
+  RegisteredUser                            : Olray
+  SerialNumber                              : 12345-10000-00001-12345
+  ServicePackMajorVersion                   : 0
+  ServicePackMinorVersion                   : 0
+  SuiteMask                                 : 272
+  SystemDevice                              : \Device\HarddiskVolume3
+  SystemDirectory                           : C:\WINDOWS\system32
+  SystemDrive                               : C:
+  WindowsDirectory                          : C:\WINDOWS
+  PSComputerName                            :
+  CimClass                                  : root/cimv2:Win32_OperatingSystem
+  CimInstanceProperties                     : (Caption, Description, InstallDate, Name...)
+  CimSystemProperties                       : Microsoft.Management.Infrastructure.CimSystemProperties
+```
+There are dozens of other classes you can explore. Open a PowerShell window and use the following Cmdlet: **Get-CimClass** to get a list.
+
+*  Win32_Share lists all network shares
+*  Win32_VideoController fetches information about your video card
+
+If Get-CimClass shows something of interest use the following Cmdlet to display all members of this class:
+
+```
+  Get-CimInstance -Class <Class> | Format-List *
+```
