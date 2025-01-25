@@ -2,6 +2,14 @@
 
 A collection of some functions I wrote for other applications or out of boredom.
 
+# Yet another TExecutor implementation
+
+TExecutor executes a binary file either in foreground or background.
+
+* callback functions for success or error
+* Various methods to detect ending apps: by process id, image name, or image path
+* Option to check if the binary is digitally signed
+
 # Detect when a new drive letter gets attached to the Windows file system
 
 Windows broadcasts new devices to all applications that have a main window handle using the WM_DEVICECHANGE message.
