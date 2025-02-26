@@ -2,6 +2,14 @@
 
 A collection of some functions I wrote for other applications or out of boredom.
 
+# A look at IfThen
+
+Every new Delphi programmer should be aware that in any common IfThen implementation, both return values for the conditions are
+calculated by the compiler prior to calling the IfThen construct. This poses no problem when working with constants but will
+when the calculations are costly i.e. when retrieving different rows from a database based on the condition.
+
+Check the IfThen project for a solution using Generics and anonymous functions.
+
 # Yet another TExecutor implementation
 
 TExecutor executes a binary file either in foreground or background.
