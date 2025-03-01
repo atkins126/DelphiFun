@@ -2,6 +2,10 @@
 
 A collection of some functions I wrote for other applications or out of boredom.
 
+# My version of TEnumConverter
+
+Providing easy conversion between string representation <-> Enum <-> Integer 
+
 # A look at IfThen
 
 Every new Delphi programmer should be aware that in any common IfThen implementation, both return values for the conditions are
