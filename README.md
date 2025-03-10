@@ -2,6 +2,11 @@
 
 A collection of some functions I wrote for other applications or out of boredom.
 
+# Nullable
+
+An **extremely simple** implementation of Nullable<T>. Consider using Nullable from the Spring4D framework instead
+which is much more sophisticated.
+
 # My version of TEnumConverter
 
 Providing easy conversion between string representation <-> Enum <-> Integer 
