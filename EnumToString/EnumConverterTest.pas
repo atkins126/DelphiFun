@@ -13,14 +13,13 @@ uses
 
 type
 
-  TestEnum = (צהü {!}, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
-
-  TDestroyListProc = reference to procedure(AList: TObject);
 {$IFDEF USE_SPRING4D}
   ListType = IList<string>;
 {$ELSE}
   ListType = System.Generics.Collections.TList<string>;
 {$ENDIF}
+
+  TestEnum = (צהü {!}, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
 
   [TestFixture]
   TTestEnumConverter = class
